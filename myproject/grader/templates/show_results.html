@@ -1,0 +1,24 @@
+<!-- grader/templates/show_results.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Results</title>
+</head>
+<body>
+<h1>Students' Scores</h1>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Roll Number</th>
+        <th>Score</th>
+    </tr>
+    {% for result in results %}
+        <tr>
+            <td>{{ result.roll_no }}</td>
+            <td>{{ result.score }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="{% url 'index' %}">Grade Another Test</a>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!-- grader/templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCQ Grading App</title>
+</head>
+<body>
+<h1>Welcome to the MCQ Grading Application</h1>
+{% if messages %}
+    <ul style="color: red;">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    <label for="num_mcqs">Enter the number of MCQs to check:</label>
+    <input type="number" id="num_mcqs" name="num_mcqs" min="1" required>
+    <button type="submit">Next</button>
+</form>
+</body>
+</html>

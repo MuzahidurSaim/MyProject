@@ -1,0 +1,26 @@
+<!-- grader/templates/enter_correct_answers.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Correct Answers</title>
+</head>
+<body>
+<h1>Enter Correct Answers</h1>
+{% if messages %}
+    <ul style="color: red;">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    {% for i in num_mcqs %}
+        <label for="answer_{{ i }}">Answer for Question {{ i }}:</label>
+        <input type="text" id="answer_{{ i }}" name="answer_{{ i }}" maxlength="1" pattern="[A-Da-d]" required>
+        <br><br>
+    {% endfor %}
+    <button type="submit">Next</button>
+</form>
+</body>
+</html>

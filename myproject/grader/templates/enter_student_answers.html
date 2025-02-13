@@ -1,0 +1,35 @@
+<!-- grader/templates/enter_student_answers.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Answers</title>
+</head>
+<body>
+<h1>Enter Answers for Student {{ student_number }}</h1>
+{% if messages %}
+    <ul style="color: red;">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    <label for="roll_no">Enter Roll Number:</label>
+    <input type="text" id="roll_no" name="roll_no" required>
+    <br><br>
+    {% for i in num_mcqs %}
+        <label for="answer_{{ i }}">Answer for Question {{ i }}:</label>
+        <input type="text" id="answer_{{ i }}" name="answer_{{ i }}" maxlength="1" pattern="[A-Da-d]" required>
+        <br><br>
+    {% endfor %}
+    <button type="submit">
+        {% if student_number < request.session.num_students %}
+            Next Student
+        {% else %}
+            Show Results
+        {% endif %}
+    </button>
+</form>
+</body>
+</html>
